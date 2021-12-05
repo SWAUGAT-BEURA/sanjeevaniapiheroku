@@ -35,5 +35,5 @@ app.use(googleRouter);
 app.use("/api/userDashboard", dashboardRoutes);
 
 app.listen(port,()=>{
-    console.log("Backend is running at port 4000");
+    console.log(`backend is running at port ${port}`);
 });
