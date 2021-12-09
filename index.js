@@ -8,7 +8,7 @@ const authRouter = require("./routes/auth");
 const userRouter = require("./routes/user");
 const categoryRouter = require("./routes/category")
 const courseRouter = require("./routes/course")
-const AdsRouter = require("./routes/advertisement")
+// const AdsRouter = require("./routes/advertisement")
 const googleRouter = require("./routes/google")
 const dashboardRoutes=require('./routes/userDashboardRouter');
 const homeRouter=require('./routes/home');
@@ -32,7 +32,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/user", userRouter);
 app.use('/api/category', categoryRouter);
 app.use('/api/course', courseRouter);
-app.use('/api/ads', AdsRouter);
+// app.use('/api/ads', AdsRouter);
 app.use(googleRouter);
 app.use("/api/userDashboard", dashboardRoutes);
 
