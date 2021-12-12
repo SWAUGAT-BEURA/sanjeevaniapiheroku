@@ -7,7 +7,7 @@ exports.getAllAdVideos = (req, res) => {
         if(course!= null) {
             res.statusCode = 200;
 			res.setHeader('Content-Type', 'application/json');
-			res.json(course.videos);
+			res.json(course.video);
         } else {
             res.json({
                 msg: "wasn't able to find the given Advertisement"
@@ -23,10 +23,10 @@ exports.getAllAdVideos = (req, res) => {
 exports.getSingleAdVideo = (req, res) => {
     Ads.findById(req.params.advertisementId)
     .then((course) => {
-        if (course != null && course.videos.id(req.params.videoId) != null) {
+        if (course != null && course.video.id(req.params.videoId) != null) {
 			res.statusCode = 200;
 			res.setHeader('Content-Type', 'application/json');
-			res.json(course.videos.id(req.params.videoId));
+			res.json(course.video.id(req.params.videoId));
 		} else if(course == null){
             res.json({
                 msg: "wasn't able to find the given Advertisement"
@@ -47,7 +47,7 @@ exports.createAdVideo = (req, res) => {
     Ads.findById(req.params.advertisementId)
     .then((course) => {
         if(course) {
-            course.videos.push({
+            course.video.push({
                 title: req.body.title,
                 videoLink: req.body.videoLink,
                 description: req.body.description
@@ -78,15 +78,15 @@ exports.createAdVideo = (req, res) => {
 exports.updateAdVideo = (req, res) => {
     Ads.findById(req.params.advertisementId)
     .then((course) => {
-        if(course && course.videos.id(req.params.videoId) != null) {
+        if(course && course.video.id(req.params.videoId) != null) {
             if(req.body.title) {
-                course.videos.id(req.params.videoId).title = req.body.title
+                course.video.id(req.params.videoId).title = req.body.title
             }
             if(req.body.videoLink) {
-                course.videos.id(req.params.videoId).videoLink = req.body.videoLink
+                course.video.id(req.params.videoId).videoLink = req.body.videoLink
             }
             if(req.body.description){
-                course.videos.id(req.params.videoId).description = req.body.description
+                course.video.id(req.params.videoId).description = req.body.description
             }
             course.save()
             .then((course) => {
@@ -119,8 +119,8 @@ exports.deleteAllAdVideo =(req, res) => {
     Ads.findById(req.params.advertisementId)
     .then((course) => {
         if(course) {
-            for(var i = (course.videos.length -1); i>=0; i--) {
-				course.videos.id(course.videos[i]._id).remove();
+            for(var i = (course.video.length -1); i>=0; i--) {
+				course.video.id(course.video[i]._id).remove();
 			}
             course.save()
 			.then((course) => {
@@ -145,8 +145,8 @@ exports.deleteAllAdVideo =(req, res) => {
 exports.deleteSingleAdVideo =(req, res) => {
     Ads.findById(req.params.advertisementId)
     .then((course) => {
-        if(course && course.videos.id(req.params.videoId)) {
-            course.videos.id(req.params.videoId).remove()
+        if(course && course.video.id(req.params.videoId)) {
+            course.video.id(req.params.videoId).remove()
             course.save()
             .then((course) => {
                 Ads.findById(req.params.advertisementId)
