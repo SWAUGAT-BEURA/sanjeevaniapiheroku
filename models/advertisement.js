@@ -10,7 +10,10 @@ var videoSchema = new Schema({
         type: String,
         required: true
     },
-    description: [String]
+    description: {
+        type: String,
+        required: true}
+
 })
 
 var advertisementSchema = new Schema({
