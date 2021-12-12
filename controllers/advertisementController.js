@@ -43,9 +43,10 @@ exports.createAd = (req, res) => {
     Advertisement.create({
         name: req.body.name,
         description: req.body.description,
-        difficulty: req.body.difficulty,
+        company: req.body.company,
         time: req.body.time,
-        thumbnail: req.body.thumbnail
+        language: req.body.language,
+        thumnail:req.body.thumbnail
     })
     .then((ads) => {
         if(ads) {
@@ -87,8 +88,10 @@ exports.updateAds = (req, res) => {
     Advertisement.findByIdAndUpdate(req.params.advertisementId, {
         $set: {name: req.body.name,
             description: req.body.description,
-            difficulty: req.body.difficulty,
-            time: req.body.time}
+            company: req.body.company,
+            time: req.body.time,
+            language: req.body.language,
+            thumnail:req.body.thumbnail}
         }, {new: true}
     )
     .then((ads) => {
