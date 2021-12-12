@@ -1,8 +1,8 @@
 // Import Models
-const Courses = require("../models/courses")
+const Ads = require("../models/advertisement")
 
-exports.getAllVideos = (req, res) => {
-    Courses.findById(req.params.courseId)
+exports.getAllAdVideos = (req, res) => {
+    Ads.findById(req.params.advertisementId)
     .then((course) => {
         if(course!= null) {
             res.statusCode = 200;
@@ -10,7 +10,7 @@ exports.getAllVideos = (req, res) => {
 			res.json(course.videos);
         } else {
             res.json({
-                msg: "wasnt able to find the given course"
+                msg: "wasn't able to find the given Advertisement"
             })
         }
     })
@@ -19,8 +19,9 @@ exports.getAllVideos = (req, res) => {
     })
 }
 
-exports.getSingleVideo = (req, res) => {
-    Courses.findById(req.params.courseId)
+
+exports.getSingleAdVideo = (req, res) => {
+    Ads.findById(req.params.advertisementId)
     .then((course) => {
         if (course != null && course.videos.id(req.params.videoId) != null) {
 			res.statusCode = 200;
@@ -28,7 +29,7 @@ exports.getSingleVideo = (req, res) => {
 			res.json(course.videos.id(req.params.videoId));
 		} else if(course == null){
             res.json({
-                msg: "wasnt able to find the given course"
+                msg: "wasn't able to find the given Advertisement"
             })
         } else {
             res.json({
@@ -41,8 +42,9 @@ exports.getSingleVideo = (req, res) => {
     })
 }
 
-exports.createVideo = (req, res) => {
-    Courses.findById(req.params.courseId)
+
+exports.createAdVideo = (req, res) => {
+    Ads.findById(req.params.advertisementId)
     .then((course) => {
         if(course) {
             course.videos.push({
@@ -52,7 +54,7 @@ exports.createVideo = (req, res) => {
             })
             course.save()
             .then((course) => {
-                Courses.findById(req.params.courseId)
+                Ads.findById(req.params.advertisementId)
                 .then((course) => {
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
@@ -73,8 +75,8 @@ exports.createVideo = (req, res) => {
 }
 
 
-exports.updateVideo = (req, res) => {
-    Courses.findById(req.params.courseId)
+exports.updateAdVideo = (req, res) => {
+    Ads.findById(req.params.advertisementId)
     .then((course) => {
         if(course && course.videos.id(req.params.videoId) != null) {
             if(req.body.title) {
@@ -88,7 +90,7 @@ exports.updateVideo = (req, res) => {
             }
             course.save()
             .then((course) => {
-                Courses.findById(req.params.courseId)
+                Ads.findById(req.params.advertisementId)
                 .then((course) => {
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
@@ -98,12 +100,12 @@ exports.updateVideo = (req, res) => {
         }
         else if(course == null) {
             res.json({
-                msg: "Wasnt able to find the course"
+                msg: "Wasn't able to find the Advertisement"
             })
         }
         else {
             res.json({
-                msg: "Wasnt able to find the video"
+                msg: "Wasn't able to find the video"
             })
         }
     })
@@ -113,8 +115,8 @@ exports.updateVideo = (req, res) => {
 }
 
 
-exports.deleteAllVideo =(req, res) => {
-    Courses.findById(req.params.courseId)
+exports.deleteAllAdVideo =(req, res) => {
+    Ads.findById(req.params.advertisementId)
     .then((course) => {
         if(course) {
             for(var i = (course.videos.length -1); i>=0; i--) {
@@ -132,7 +134,7 @@ exports.deleteAllVideo =(req, res) => {
         }
         else if(course == null) {
             re.json({
-                msg: "wasnt able to find the course"
+                msg: "wasn't able to find the advertisement"
             })
         }
     })
@@ -140,15 +142,14 @@ exports.deleteAllVideo =(req, res) => {
         res.json(err)
     })
 }
-
-exports.deleteSingleVideo =(req, res) => {
-    Courses.findById(req.params.courseId)
+exports.deleteSingleAdVideo =(req, res) => {
+    Ads.findById(req.params.advertisementId)
     .then((course) => {
         if(course && course.videos.id(req.params.videoId)) {
             course.videos.id(req.params.videoId).remove()
             course.save()
             .then((course) => {
-                Courses.findById(req.params.courseId)
+                Ads.findById(req.params.advertisementId)
                 .then((course) => {
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');

@@ -14,10 +14,6 @@ var videoSchema = new Schema({
 })
 
 var advertisementSchema = new Schema({
-    category_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category'
-    },
     name: {
         type: String,
         required: true
@@ -41,11 +37,8 @@ var advertisementSchema = new Schema({
         type: String,
         required: true
     },
-    // video: [videoSchema]
-    vide:{
-        type: String,
-        required: true
-    }
+    video: [videoSchema]
+    
 }, {
     timestamps: true
 })

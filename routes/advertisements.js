@@ -1,67 +1,46 @@
 const adsRouter = require("express").Router();
 
-// Import Controllers
-const adsController = require('../controllers/courseController')
-const videoController = require("../controllers/videoController")
-const sectionController = require("../controllers/sectionController")
-
+const adsController = require('../controllers/advertisementController')
+const videoController = require("../controllers/adsvideocontroller")
 
 adsRouter.route('/')
-.get(adsController.getAllCourses)
-.post(adsController.createCourse)
+.get(adsController.getAllAd)
+.post(adsController.createAd)
 .put((req, res) => {
     res.statusCode = 403;
 	res.end('PUT operation not supported');
 })
-.delete(adsController.deleteAllCourses)
+.delete(adsController.deleteAllAds)
 
 
-adsRouter.route('/:courseId')
-.get(adsController.getSingleCourse)
+adsRouter.route('/:advertisementId')
+.get(adsController.getSingleAd)
 .post((req, res) => {
     res.statusCode = 403;
 	res.end('POST operation not supported');
 })
-.put(adsController.updateCourse)
-.delete(adsController.deleteSingleCourse)
+.put(adsController.updateAds)
+.delete(adsController.deleteSingleAds)
 
-adsRouter.route('/:courseId/sections')
-.get(sectionController.getAllSection)
-.post(sectionController.createSection)
+
+adsRouter.route('/:advertisementId/videos')
+.get(videoController.getAllAdVideos)
+.post(videoController.createAdVideo)
 .put((req, res) => {
     res.statusCode = 403;
 	res.end('PUT operation not supported');
 })
-.delete(sectionController.deleteAllSections)
+.delete(videoController.deleteAllAdVideo)
 
-adsRouter.route('/:courseId/sections/:sectionId')
-.get(sectionController.getSingleSection)
+
+adsRouter.route('/:advertisementId/videos/:videoId')
+.get(videoController.getSingleAdVideo)
 .post((req, res) => {
     res.statusCode = 403;
 	res.end('POST operation not supported');
 })
-.put(sectionController.updateSection)
-.delete(sectionController.deleteSingleSection)
+.put(videoController.updateAdVideo)
+.delete(videoController.deleteSingleAdVideo)
 
 
-adsRouter.route('/:courseId/sections/:sectionId/videos')
-.get(videoController.getAllVideos)
-.post(videoController.createVideo)
-.put((req, res) => {
-    res.statusCode = 403;
-	res.end('PUT operation not supported');
-})
-.delete(videoController.deleteAllVideo)
-
-
-adsRouter.route('/:courseId/sections/:sectionId/videos/:videoId')
-.get(videoController.getSingleVideo)
-.post((req, res) => {
-    res.statusCode = 403;
-	res.end('POST operation not supported');
-})
-.put(videoController.updateVideo)
-.delete(videoController.deleteSingleVideo)
-
-
-module.exports = courseRouter;
+module.exports = adsRouter;

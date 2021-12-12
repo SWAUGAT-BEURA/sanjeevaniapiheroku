@@ -13,20 +13,20 @@ var videoSchema = new Schema({
     description: [String]
 })
 
-var sectionSchema = new Schema({
-    title: {
-        type: String,
-        required: true
-    },
-    videos: [videoSchema]
+// var sectionSchema = new Schema({
+//     title: {
+//         type: String,
+//         required: true
+//     },
+//     videos: [videoSchema]
     
-})
+// })
 
 var courseSchema = new Schema({
-    category_id: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Category'
-    },
+    // category_id: {
+    //     type: mongoose.Schema.Types.ObjectId,
+    //     ref: 'Category'
+    // },
     name: {
         type: String,
         required: true
@@ -46,7 +46,7 @@ var courseSchema = new Schema({
         type: String,
         required: true
     },
-    sections: [sectionSchema]
+    videos: [videoSchema]
 }, {
     timestamps: true
 })

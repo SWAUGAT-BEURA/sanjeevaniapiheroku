@@ -25,26 +25,26 @@ courseRouter.route('/:courseId')
 .put(courseController.updateCourse)
 .delete(courseController.deleteSingleCourse)
 
-courseRouter.route('/:courseId/sections')
-.get(sectionController.getAllSection)
-.post(sectionController.createSection)
-.put((req, res) => {
-    res.statusCode = 403;
-	res.end('PUT operation not supported');
-})
-.delete(sectionController.deleteAllSections)
+// courseRouter.route('/:courseId/sections')
+// .get(sectionController.getAllSection)
+// .post(sectionController.createSection)
+// .put((req, res) => {
+//     res.statusCode = 403;
+// 	res.end('PUT operation not supported');
+// })
+// .delete(sectionController.deleteAllSections)
 
-courseRouter.route('/:courseId/sections/:sectionId')
-.get(sectionController.getSingleSection)
-.post((req, res) => {
-    res.statusCode = 403;
-	res.end('POST operation not supported');
-})
-.put(sectionController.updateSection)
-.delete(sectionController.deleteSingleSection)
+// courseRouter.route('/:courseId/sections/:sectionId')
+// .get(sectionController.getSingleSection)
+// .post((req, res) => {
+//     res.statusCode = 403;
+// 	res.end('POST operation not supported');
+// })
+// .put(sectionController.updateSection)
+// .delete(sectionController.deleteSingleSection)
 
 
-courseRouter.route('/:courseId/sections/:sectionId/videos')
+courseRouter.route('/:courseId/videos')
 .get(videoController.getAllVideos)
 .post(videoController.createVideo)
 .put((req, res) => {
@@ -54,7 +54,7 @@ courseRouter.route('/:courseId/sections/:sectionId/videos')
 .delete(videoController.deleteAllVideo)
 
 
-courseRouter.route('/:courseId/sections/:sectionId/videos/:videoId')
+courseRouter.route('/:courseId/videos/:videoId')
 .get(videoController.getSingleVideo)
 .post((req, res) => {
     res.statusCode = 403;

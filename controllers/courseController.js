@@ -1,7 +1,6 @@
 // Import Models
 const Courses = require("../models/courses")
-const Categories = require("../models/categories")
-
+// const Categories = require("../models/categories")
 
 exports.getAllCourses = (req, res) => {
     Courses.find({})
@@ -38,33 +37,20 @@ exports.getSingleCourse = (req, res) => {
     })
 }
 
-
 exports.createCourse = (req, res) => {
-    Categories.findById(req.body.category_id)
-    .then((category) => {
-        if(!category) {
-            res.json({
-                message: "There is no category with " + req.body.category_id + " this id"
-            })
-        } else {
-            Courses.create({
-                category_id: req.body.category_id,
-                name: req.body.name,
-                description: req.body.description,
-                difficulty: req.body.difficulty,
-                time: req.body.time,
-                thumbnail: req.body.thumbnail
-            })
-            .then((course) => {
-                if(course) {
-                    res.setHeader('Content-Type', 'application/json');
-                    res.statusCode = 200;
-                    res.json(course)
-                }
-            })
-            .catch((err) => {
-                res.json(err)
-            })
+    Courses.create({
+        category_id: req.body.category_id,
+        name: req.body.name,
+        description: req.body.description,
+        difficulty: req.body.difficulty,
+        time: req.body.time,
+        thumbnail: req.body.thumbnail
+    })
+    .then((course) => {
+        if(course) {
+            res.setHeader('Content-Type', 'application/json');
+            res.statusCode = 200;
+            res.json(course)
         }
     })
     .catch((err) => {
