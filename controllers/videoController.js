@@ -48,7 +48,8 @@ exports.createVideo = (req, res) => {
             course.videos.push({
                 title: req.body.title,
                 videoLink: req.body.videoLink,
-                description: req.body.description
+                description: req.body.description,
+                vthumbnail: req.body.vthumbnail
             })
             course.save()
             .then((course) => {
@@ -85,6 +86,9 @@ exports.updateVideo = (req, res) => {
             }
             if(req.body.description){
                 course.videos.id(req.params.videoId).description = req.body.description
+            }
+            if(req.body.vthumbnail){
+                course.videos.id(req.params.videoId).vthumbnail = req.body.vthumbnail
             }
             course.save()
             .then((course) => {

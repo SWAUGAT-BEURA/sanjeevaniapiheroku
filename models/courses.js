@@ -6,6 +6,9 @@ var videoSchema = new Schema({
         type: String,
         required: true
     },
+    vthumbnail: {
+        type: String
+    },
     videoLink: {
         type: String,
         required: true
@@ -16,20 +19,8 @@ var videoSchema = new Schema({
     }
 })
 
-// var sectionSchema = new Schema({
-//     title: {
-//         type: String,
-//         required: true
-//     },
-//     videos: [videoSchema]
-    
-// })
-
 var courseSchema = new Schema({
-    // category_id: {
-    //     type: mongoose.Schema.Types.ObjectId,
-    //     ref: 'Category'
-    // },
+
     name: {
         type: String,
         required: true

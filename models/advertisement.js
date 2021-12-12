@@ -6,6 +6,9 @@ var videoSchema = new Schema({
         type: String,
         required: true
     },
+    vthumbnail: {
+        type: String
+    },
     videoLink: {
         type: String,
         required: true
