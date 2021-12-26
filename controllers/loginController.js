@@ -14,10 +14,10 @@ exports.userLogin = async(req,res)=>{
 
         const validate=await bcrypt.compare(req.body.password,user.password);
         !validate && res.status(400).json("Wrong credentials!");
-        if(!user.verified) {
-            res.status(401).json("Please verify your email first");
-            return;
-        }
+        // if(!user.verified) {
+        //     res.status(401).json("Please verify your email first");
+        //     return;
+        // }
         const{password,...others}=user._doc;
         res.status(200).json(others);
 
