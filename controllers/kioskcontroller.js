@@ -21,7 +21,7 @@ exports.getAllAdState = (req, res) => {
 
 
 // handleing post request
-exports.addkioskuser("/kiosk/api/user", async (req, res) => {
+exports.addkioskuser=async(req,res)=>{
     try {
         const addingKioskUsers = new KioskUser(req.body);
         await addingKioskUsers.save();
@@ -29,10 +29,10 @@ exports.addkioskuser("/kiosk/api/user", async (req, res) => {
     } catch (e) {
         res.send(e);
     }
-})
+}
 
 // get request for checking phone number
-app.checkphonenumber("/kiosk/api/user/:phno", async (req, res) => {
+exports.checkphonenumber=async(req,res)=>{
     try {
         const phno = req.params.phno;
         console.log(phno);
@@ -46,4 +46,4 @@ app.checkphonenumber("/kiosk/api/user/:phno", async (req, res) => {
     } catch (error) {
         console.log(error);
     }
-})
+}
