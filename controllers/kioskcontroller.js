@@ -25,8 +25,10 @@ exports.addkioskuser=async(req,res)=>{
     try {
         const addingKioskUsers = new KioskUser(req.body);
         await addingKioskUsers.save();
-        res.send("successfully added");
-        res.json(addingKioskUsers);
+        res.status(200).json({
+            message:"successfully added",
+            kioskuser: addingKioskUsers
+        })
     } catch (e) {
         res.send(e);
     }
@@ -38,11 +40,15 @@ exports.checkphonenumber=async(req,res)=>{
         const phno = req.params.phno;
         console.log(phno);
         if (!phno) {
-            res.send("phno undefind");
+            res.send("New User");
         } else {
             const getUser = await KioskUser.findOne({ phno: phno }, 'phno name').exec();
             console.log(getUser);
-            res.send(getUser);
+            // res.send(getUser);
+            res.status(200).json({
+                message:"successfully fetched th details",
+                kioskuser: getUser
+            })
         }
     } catch (error) {
         console.log(error);
