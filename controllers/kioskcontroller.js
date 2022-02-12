@@ -26,6 +26,7 @@ exports.addkioskuser=async(req,res)=>{
         const addingKioskUsers = new KioskUser(req.body);
         await addingKioskUsers.save();
         res.send("successfully added");
+        res.json(addingKioskUsers);
     } catch (e) {
         res.send(e);
     }
