@@ -43,6 +43,15 @@ var advertisementSchema = new Schema({
         type: String,
         required: true
     },
+    state: {
+        type: String,
+        required: true
+    },
+    allregion: {
+        type: Boolean,
+        required: true
+    },
+
     video: [videoSchema]
     
 }, {

@@ -19,6 +19,51 @@ exports.getAllAdVideos = (req, res) => {
     })
 }
 
+exports.getAllAdState = (req, res) => {
+    Ads.findById(req.params.advertisementId)
+    .then((course) => {
+        if(course!= null) {
+            res.statusCode = 200;
+			res.setHeader('Content-Type', 'application/json');
+			res.json(course.video);
+        } else {
+            res.json({
+                msg: "wasn't able to find the given Advertisement"
+            })
+        }
+    })
+    .catch((err) => {
+        res.json(err)
+    })
+}
+
+exports.getAllAdState=async(req,res)=>{
+    const name1= req.params.state;    
+    try{
+        let contacts=await Ads.find({state:req.params.state}).populate('state');
+        if(!contacts){
+            contacts=[]
+        }
+        const contact=await contacts.findOne({name:name1});
+        if(contact){
+            res.status(200).json({
+                message:"contact fetched",
+                contact:contact
+            })
+        }else{
+            res.status(400).json({
+                message:"contact not found"
+            })
+        }
+
+    }catch(err){
+        res.status(500).json({
+            message:"something went wrong",
+            error:err
+        })
+    }
+}
+
 
 exports.getSingleAdVideo = (req, res) => {
     Ads.findById(req.params.advertisementId)
