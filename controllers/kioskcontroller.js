@@ -19,17 +19,7 @@ exports.getAllAdState = (req, res) => {
     })
 }
 
-// someModel
-//     .estimatedDocumentCount()
-//     .then(docCount => {
-//         console.log(docCount)
-//         //and do one super neat trick
-//     })
-//     .catch(err => {
-//         //handle possible errors
-//     })
-
-
+//count total users
 exports.countuserstotal=async(req,res)=>{
     totalusers=0;
     KioskUser.countDocuments({}, function(err, docCount) {
@@ -41,18 +31,23 @@ exports.countuserstotal=async(req,res)=>{
             totalusers: totalusers
         })
         //and do some other fancy stuff
-    })
-       
-    // try{ 
-        
-
-    // }catch(err){
-    //     res.status(500).json({
-    //         message:"something went wrong",
-    //         error: err
-    //     })
-        
-    // }
+    })       
+  
+}
+//count total males
+exports.countuserstotalmales=async(req,res)=>{
+    totalusers=0;
+    KioskUser.countDocuments({"gender": "male"}, function(err, docCount) {
+        if (err) { return handleError(err) } //handle possible errors
+        console.log(docCount)
+        totalusers=docCount
+        res.status(200).json({
+            message:"successfull",
+            totalmaleusers: totalusers
+        })
+        //and do some other fancy stuff
+    })       
+  
 }
 
 

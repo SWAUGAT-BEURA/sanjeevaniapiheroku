@@ -16,5 +16,7 @@ kioskrouter.route("/user")
 kioskrouter.route("/totalusers")
 .get(kioskcontroller.countuserstotal);
 
+kioskrouter.route("/totalmales")
+.get(kioskcontroller.countuserstotalmales);
 
 module.exports = kioskrouter;
