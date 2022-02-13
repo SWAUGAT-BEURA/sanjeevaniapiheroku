@@ -39,13 +39,10 @@ exports.countuserstotal=async(req,res)=>{
         //and do some other fancy stuff
     })
        
-    try{        
-        const cart1=new cartModel(cart);
-        await cart1.save()
+    try{ 
         res.status(200).json({
             message:"successfull",
             totalusers: totalusers
-
         })
 
     }catch(err){
