@@ -36,22 +36,23 @@ exports.countuserstotal=async(req,res)=>{
         if (err) { return handleError(err) } //handle possible errors
         console.log(docCount)
         totalusers=docCount
-        //and do some other fancy stuff
-    })
-       
-    try{ 
         res.status(200).json({
             message:"successfull",
             totalusers: totalusers
         })
-
-    }catch(err){
-        res.status(500).json({
-            message:"something went wrong",
-            error: err
-        })
+        //and do some other fancy stuff
+    })
+       
+    // try{ 
         
-    }
+
+    // }catch(err){
+    //     res.status(500).json({
+    //         message:"something went wrong",
+    //         error: err
+    //     })
+        
+    // }
 }
 
 
