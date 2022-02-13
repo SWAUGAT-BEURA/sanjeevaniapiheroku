@@ -51,7 +51,7 @@ exports.countuserstotalmales=async(req,res)=>{
 }
 
 //count total females
-exports.countuserstotalmales=async(req,res)=>{
+exports.countuserstotalfemales=async(req,res)=>{
     totalusers=0;
     KioskUser.countDocuments({"gender": "female"}, function(err, docCount) {
         if (err) { return handleError(err) } //handle possible errors
