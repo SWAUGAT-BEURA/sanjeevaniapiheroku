@@ -19,6 +19,44 @@ exports.getAllAdState = (req, res) => {
     })
 }
 
+// someModel
+//     .estimatedDocumentCount()
+//     .then(docCount => {
+//         console.log(docCount)
+//         //and do one super neat trick
+//     })
+//     .catch(err => {
+//         //handle possible errors
+//     })
+
+
+exports.countuserstotal=async(req,res)=>{
+    totalusers=0;
+    KioskUser.countDocuments({}, function(err, docCount) {
+        if (err) { return handleError(err) } //handle possible errors
+        console.log(docCount)
+        totalusers=docCount
+        //and do some other fancy stuff
+    })
+       
+    try{        
+        const cart1=new cartModel(cart);
+        await cart1.save()
+        res.status(200).json({
+            message:"successfull",
+            totalusers: totalusers
+
+        })
+
+    }catch(err){
+        res.status(500).json({
+            message:"something went wrong",
+            error: err
+        })
+        
+    }
+}
+
 
 // handleing post request
 exports.addkioskuser=async(req,res)=>{
