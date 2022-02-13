@@ -13,5 +13,8 @@ kioskrouter.route("/user/:phno")
 kioskrouter.route("/user")
 .post(kioskcontroller.addkioskuser);
 
+kioskrouter.route("/totalusers")
+.get(kioskcontroller.countuserstotal);
+
 
 module.exports = kioskrouter;
