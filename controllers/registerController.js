@@ -5,7 +5,7 @@ exports.userRegister = async(req,res) => {
     try{
         const hashedPass=await bcrypt.hash(req.body.password,10);
         const newUser=new User({
-            username: req.body.username,
+            fullname: req.body.fullname,
             email: req.body.email,
             password:hashedPass,
             phone:req.body.phone

@@ -4,8 +4,8 @@ const bcrypt=require('bcryptjs');
 exports.userLogin = async(req,res)=>{
     try{
         var user = null;
-        if(req.body.username != null) {
-            user= await User.findOne({username:req.body.username});
+        if(req.body.fullname != null) {
+            user= await User.findOne({fullname:req.body.fullname});
         } else if(req.body.email != null) {
             user= await User.findOne({email:req.body.email});
         }
