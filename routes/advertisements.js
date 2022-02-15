@@ -12,8 +12,8 @@ adsRouter.route('/')
 })
 .delete(adsController.deleteAllAds)
 
-// adsRouter.route('/:state')
-// .get(videoController.getAllAdState)
+adsRouter.route('/:state')
+.get(adsController.getAllAdState)
 
 
 adsRouter.route('/:advertisementId')
