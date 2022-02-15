@@ -37,6 +37,42 @@ exports.getSingleAd = (req, res) => {
         res.json(err)
     })
 }
+exports.getAllAdState=async(req,res)=>{
+    const name1= req.params.state;  
+    
+    Ads.find({ 'state': name1 }, function (err, docs) {
+        if (err) { return handleError(err) } //handle possible errors
+        console.log(docCount)
+        
+        res.status(200).json({
+            message:"successfull",
+            ads: docs
+        })
+    });
+    // try{
+    //     let contacts=await Ads.find({state:req.params.state}).populate('state');
+    //     if(!contacts){
+    //         contacts=[]
+    //     }
+    //     const contact=await contacts.findOne({name:name1});
+    //     if(contact){
+    //         res.status(200).json({
+    //             message:"contact fetched",
+    //             contact:contact
+    //         })
+    //     }else{
+    //         res.status(400).json({
+    //             message:"contact not found"
+    //         })
+    //     }
+
+    // }catch(err){
+    //     res.status(500).json({
+    //         message:"something went wrong",
+    //         error:err
+    //     })
+    // }
+}
 
 
 exports.createAd = (req, res) => {
@@ -46,7 +82,9 @@ exports.createAd = (req, res) => {
         company: req.body.company,
         time: req.body.time,
         language: req.body.language,
-        thumnail:req.body.thumbnail
+        thumnail:req.body.thumbnail,
+        state:req.body.state,
+        allregion:req.body.allregion
     })
     .then((ads) => {
         if(ads) {
