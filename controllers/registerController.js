@@ -17,26 +17,22 @@ const bcryt=require('bcryptjs');
 //     }
 // }
 
-exports.userRegister=async (req,res)=>{
-    const userSchema=joi.object({
-        fullname:joi.string().required().min(4),
-        email:joi.string().required(),
-        phone:joi.string().required().max(10),
-        password:joi.string().required().min(6).max(16)
-    })
-    
-    try{
-        let userfields= await userSchema.validateAsync(req.body)       
+exports.userRegister=async (req,res)=>{   
+    try{   
         let user=await User.findOne({email:userfields.email});
-        if(!user){
-
-            user=new User(userfields)
+        if(!user){            
             const salt=await bcryt.genSalt(10);
-            user.password=await bcryt.hash(user.password,salt);
-            await user.save();
+            const hashedPass=await bcryt.hash(user.password,salt);
+            const newUser=new User({
+                fullname: req.body.fullname,
+                email: req.body.email,
+                password:hashedPass,
+                phone:req.body.phone
+            });
+            const user=await newUser.save();
             res.status(200).json({
                 message:"user registered successfully",
-                userData:user
+                userData: user
             })
         }else{
             res.status(400).json({
