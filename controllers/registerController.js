@@ -19,10 +19,10 @@ const bcryt=require('bcryptjs');
 
 exports.userRegister=async (req,res)=>{   
     try{   
-        let user=await User.findOne({email:userfields.email});
+        let user=await User.findOne({email:req.body.email});
         if(!user){            
             const salt=await bcryt.genSalt(10);
-            const hashedPass=await bcryt.hash(user.password,salt);
+            const hashedPass=await bcryt.hash(req.body.password,salt);
             const newUser=new User({
                 fullname: req.body.fullname,
                 email: req.body.email,
