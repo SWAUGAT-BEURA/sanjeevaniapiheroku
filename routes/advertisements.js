@@ -12,6 +12,9 @@ adsRouter.route('/')
 })
 .delete(adsController.deleteAllAds)
 
+adsRouter.route('/:state')
+.get(videoController.getAllAdState)
+
 
 adsRouter.route('/:advertisementId')
 .get(adsController.getSingleAd)
@@ -41,6 +44,8 @@ adsRouter.route('/:advertisementId/videos/:videoId')
 })
 .put(videoController.updateAdVideo)
 .delete(videoController.deleteSingleAdVideo)
+
+
 
 
 module.exports = adsRouter;
