@@ -37,6 +37,7 @@ exports.userRegister=async (req,res)=>{
         }else{
             res.status(400).json({
                 message:"user already eists with the email id",
+                userData: user
             
             })
         }
@@ -44,7 +45,7 @@ exports.userRegister=async (req,res)=>{
     }catch(err){
         res.status(500).json({
             message:"Something Went Wrong",
-            error:err
+            userData: null
         })
     }
     
