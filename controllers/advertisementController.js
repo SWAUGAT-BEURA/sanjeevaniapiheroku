@@ -38,9 +38,10 @@ exports.getSingleAd = (req, res) => {
     })
 }
 exports.getAllAdState=async(req,res)=>{    
+    let state= req.params.state
     res.status(200).json({
         message:"successfull",
-        ads: req.params.state
+        ads: state
     })
 
     // Advertisement.find({ 'state': req.params.state }, function (err, docs) {
