@@ -37,13 +37,9 @@ exports.getSingleAd = (req, res) => {
         res.json(err)
     })
 }
-exports.getAllAdState=async(req,res)=>{
-    // const name1= req.params.state;  
-    
-    Advertisement.find({ 'state': req.params.state }, function (err, docs) {
-        if (err) { return handleError(err) } //handle possible errors
-        console.log(docs)
-        
+exports.getAllAdState=async(req,res)=>{    
+    Advertisement.find({ 'state': 'Odisha' }, function (err, docs) {
+        if (err) { return handleError(err) } //handle possible errors        
         res.status(200).json({
             message:"successfull",
             ads: docs
