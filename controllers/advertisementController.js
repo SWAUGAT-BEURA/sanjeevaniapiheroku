@@ -40,7 +40,7 @@ exports.getSingleAd = (req, res) => {
 exports.getAllAdState=async(req,res)=>{
     const name1= req.params.state;  
     
-    Ads.find({ 'state': name1 }, function (err, docs) {
+    Advertisement.find({ 'state': name1 }, function (err, docs) {
         if (err) { return handleError(err) } //handle possible errors
         console.log(docCount)
         
