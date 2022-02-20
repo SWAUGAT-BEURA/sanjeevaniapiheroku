@@ -40,38 +40,38 @@ exports.getSingleAd = (req, res) => {
 exports.getAllAdState=async(req,res)=>{
     // const name1= req.params.state;  
     
-    // Advertisement.find({ 'state': name1 }, function (err, docs) {
-    //     if (err) { return handleError(err) } //handle possible errors
-    //     console.log(docCount)
+    Advertisement.find({ 'state': req.params.state }, function (err, docs) {
+        if (err) { return handleError(err) } //handle possible errors
+        console.log(docs)
         
-    //     res.status(200).json({
-    //         message:"successfull",
-    //         ads: docs
-    //     })
-    // });
-    try{
-        let contacts=await Advertisement.find({state:req.params.state}).populate('state');
-        if(!contacts){
-            contacts=[]
-        }
-        // const contact=await contacts.findOne({name:name1});
-        else if(contacts){
-            res.status(200).json({
-                message:"contact fetched",
-                contacts:contacts
-            })
-        }else{
-            res.status(400).json({
-                message:"contact not found"
-            })
-        }
-
-    }catch(err){
-        res.status(500).json({
-            message:"something went wrong",
-            error:err
+        res.status(200).json({
+            message:"successfull",
+            ads: docs
         })
-    }
+    });
+    // try{
+    //     let contacts=await Advertisement.find({state:req.params.state}).populate('state');
+    //     if(!contacts){
+    //         contacts=[]
+    //     }
+    //     // const contact=await contacts.findOne({name:name1});
+    //     else if(contacts){
+    //         res.status(200).json({
+    //             message:"contact fetched",
+    //             contacts:contacts
+    //         })
+    //     }else{
+    //         res.status(400).json({
+    //             message:"contact not found"
+    //         })
+    //     }
+
+    // }catch(err){
+    //     res.status(500).json({
+    //         message:"something went wrong",
+    //         error:err
+    //     })
+    // }
 }
 
 
