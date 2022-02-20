@@ -39,7 +39,7 @@ exports.getSingleAd = (req, res) => {
 }
 exports.getAllAdState=async(req,res)=>{    
 
-    Advertisement.find({ 'state': req.query.state }, function (err, docs) {
+    Advertisement.find({ 'state': req.query.state },'video', function (err, docs) {
         if (err) { return handleError(err) } //handle possible errors        
         res.status(200).json({
             message:"successfull",
