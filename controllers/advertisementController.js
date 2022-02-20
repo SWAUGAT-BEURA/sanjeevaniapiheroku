@@ -38,13 +38,19 @@ exports.getSingleAd = (req, res) => {
     })
 }
 exports.getAllAdState=async(req,res)=>{    
-    Advertisement.find({ 'state': req.params.state }, function (err, docs) {
-        if (err) { return handleError(err) } //handle possible errors        
-        res.status(200).json({
-            message:"successfull",
-            ads: docs
-        })
-    });
+    res.status(200).json({
+        message:"successfull",
+        ads: req.params.state
+    })
+
+    // Advertisement.find({ 'state': req.params.state }, function (err, docs) {
+    //     if (err) { return handleError(err) } //handle possible errors        
+    //     res.status(200).json({
+    //         message:"successfull",
+    //         ads: docs
+    //     })
+    // });
+
     // try{
     //     let contacts=await Advertisement.find({state:req.params.state}).populate('state');
     //     if(!contacts){

@@ -12,7 +12,7 @@ adsRouter.route('/')
 })
 .delete(adsController.deleteAllAds)
 
-adsRouter.route('/adsbystate/:state')
+adsRouter.route('/adsbystate/')
 .get(adsController.getAllAdState)
 
 
