@@ -54,11 +54,11 @@ exports.getAllAdState=async(req,res)=>{
         if(!contacts){
             contacts=[]
         }
-        const contact=await contacts.findOne({name:name1});
-        if(contact){
+        // const contact=await contacts.findOne({name:name1});
+        else if(contacts){
             res.status(200).json({
                 message:"contact fetched",
-                contact:contact
+                contacts:contacts
             })
         }else{
             res.status(400).json({
