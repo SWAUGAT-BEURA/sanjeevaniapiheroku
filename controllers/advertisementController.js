@@ -47,29 +47,6 @@ exports.getAllAdState=async(req,res)=>{
         })
     });
 
-    // try{
-    //     let contacts=await Advertisement.find({state:req.params.state}).populate('state');
-    //     if(!contacts){
-    //         contacts=[]
-    //     }
-    //     // const contact=await contacts.findOne({name:name1});
-    //     else if(contacts){
-    //         res.status(200).json({
-    //             message:"contact fetched",
-    //             contacts:contacts
-    //         })
-    //     }else{
-    //         res.status(400).json({
-    //             message:"contact not found"
-    //         })
-    //     }
-
-    // }catch(err){
-    //     res.status(500).json({
-    //         message:"something went wrong",
-    //         error:err
-    //     })
-    // }
 }
 
 
