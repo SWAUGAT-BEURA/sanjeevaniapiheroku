@@ -36,6 +36,8 @@ const userSchema = new mongoose.Schema({
     },
     scores: [scoreSchema]
 
+}, {
+    timestamps: true
 })
 
 // new collection

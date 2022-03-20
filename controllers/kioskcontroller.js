@@ -104,7 +104,7 @@ exports.checkphonenumber=async(req,res)=>{
 
 
 exports.getAllScores = (req, res) => {
-    kioskuser.findById(req.params.userId)
+    KioskUser.findById(req.params.userId)
     .then((user) => {
         if(user!= null) {
             res.statusCode = 200;
@@ -122,7 +122,7 @@ exports.getAllScores = (req, res) => {
 }
 
 exports.addscore = (req, res) => {
-    kioskuser.findById(req.params.userId)
+    KioskUser.findById(req.params.userId)
     .then((user) => {
         if(user) {
             user.scores.push({
@@ -131,7 +131,7 @@ exports.addscore = (req, res) => {
             })
             user.save()
             .then((user) => {
-                kioskuser.findById(req.params.userId)
+                KioskUser.findById(req.params.userId)
                 .then((user) => {
                     res.statusCode = 200;
                     res.setHeader('Content-Type', 'application/json');
@@ -152,23 +152,23 @@ exports.addscore = (req, res) => {
 }
 
 exports.deleteAllScores =(req, res) => {
-    kioskuser.findById(req.params.userId)
-    .then((course) => {
-        if(course) {
-            for(var i = (course.scores.length -1); i>=0; i--) {
-				course.scores.id(course.scores[i]._id).remove();
+    KioskUser.findById(req.params.userId)
+    .then((user) => {
+        if(user) {
+            for(var i = (user.scores.length -1); i>=0; i--) {
+				user.scores.id(user.scores[i]._id).remove();
 			}
-            course.save()
-			.then((course) => {
+            user.save()
+			.then((user) => {
 				res.statusCode = 200;
 				res.setHeader('Content-Type', 'application/json');
-				res.json(course);
+				res.json(user);
 			})
             .catch((err) => {
                 res.json(err)
             })
         }
-        else if(course == null) {
+        else if(user == null) {
             re.json({
                 msg: "wasnt able to find the user"
             })
