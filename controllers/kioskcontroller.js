@@ -101,3 +101,80 @@ exports.checkphonenumber=async(req,res)=>{
         console.log(error);
     }
 }
+
+
+exports.getAllScores = (req, res) => {
+    kioskuser.findById(req.params.userId)
+    .then((user) => {
+        if(user!= null) {
+            res.statusCode = 200;
+			res.setHeader('Content-Type', 'application/json');
+			res.json(user.scores);
+        } else {
+            res.json({
+                msg: "wasnt able to find the given user"
+            })
+        }
+    })
+    .catch((err) => {
+        res.json(err)
+    })
+}
+
+exports.addscore = (req, res) => {
+    kioskuser.findById(req.params.userId)
+    .then((user) => {
+        if(user) {
+            user.scores.push({
+                score: req.body.score,
+                date: req.body.date
+            })
+            user.save()
+            .then((user) => {
+                kioskuser.findById(req.params.userId)
+                .then((user) => {
+                    res.statusCode = 200;
+                    res.setHeader('Content-Type', 'application/json');
+                    res.json(user);
+                })
+                .catch((err) => {
+                    res.json(err)
+                })
+            })
+            .catch((err) => {
+                res.json(err)
+            })
+        }
+    })
+    .catch((err) => {
+        res.json(err)
+    })
+}
+
+exports.deleteAllScores =(req, res) => {
+    kioskuser.findById(req.params.userId)
+    .then((course) => {
+        if(course) {
+            for(var i = (course.scores.length -1); i>=0; i--) {
+				course.scores.id(course.scores[i]._id).remove();
+			}
+            course.save()
+			.then((course) => {
+				res.statusCode = 200;
+				res.setHeader('Content-Type', 'application/json');
+				res.json(course);
+			})
+            .catch((err) => {
+                res.json(err)
+            })
+        }
+        else if(course == null) {
+            re.json({
+                msg: "wasnt able to find the user"
+            })
+        }
+    })
+    .catch((err) => {
+        res.json(err)
+    })
+}
