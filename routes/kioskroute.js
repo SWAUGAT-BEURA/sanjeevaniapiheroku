@@ -22,14 +22,14 @@ kioskrouter.route("/totalfemales")
 .get(kioskcontroller.countuserstotalfemales);
 
 
-kioskrouter.route('/:userId/scores')
-.get(kioskcontroller.getAllScores)
-.post(kioskcontroller.addscore)
-.put((req, res) => {
-    res.statusCode = 403;
-	res.end('PUT operation not supported');
-})
-.delete(kioskcontroller.deleteAllScores)
+// kioskrouter.route('/:userId/scores')
+// .get(kioskcontroller.getAllScores)
+// .post(kioskcontroller.addscore)
+// .put((req, res) => {
+//     res.statusCode = 403;
+// 	res.end('PUT operation not supported');
+// })
+// .delete(kioskcontroller.deleteAllScores)
 
 
 

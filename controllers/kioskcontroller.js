@@ -103,78 +103,78 @@ exports.checkphonenumber=async(req,res)=>{
 }
 
 
-exports.getAllScores = (req, res) => {
-    KioskUser.findById(req.params.userId)
-    .then((user) => {
-        if(user!= null) {
-            res.statusCode = 200;
-			res.setHeader('Content-Type', 'application/json');
-			res.json(user.scores);
-        } else {
-            res.json({
-                msg: "wasnt able to find the given user"
-            })
-        }
-    })
-    .catch((err) => {
-        res.json(err)
-    })
-}
+// exports.getAllScores = (req, res) => {
+//     KioskUser.findById(req.params.userId)
+//     .then((user) => {
+//         if(user!= null) {
+//             res.statusCode = 200;
+// 			res.setHeader('Content-Type', 'application/json');
+// 			res.json(user.scores);
+//         } else {
+//             res.json({
+//                 msg: "wasnt able to find the given user"
+//             })
+//         }
+//     })
+//     .catch((err) => {
+//         res.json(err)
+//     })
+// }
 
-exports.addscore = (req, res) => {
-    KioskUser.findById(req.params.userId)
-    .then((user) => {
-        if(user) {
-            user.scores.push({
-                score: req.body.score,
-                date: req.body.date
-            })
-            user.save()
-            .then((user) => {
-                KioskUser.findById(req.params.userId)
-                .then((user) => {
-                    res.statusCode = 200;
-                    res.setHeader('Content-Type', 'application/json');
-                    res.json(user);
-                })
-                .catch((err) => {
-                    res.json(err)
-                })
-            })
-            .catch((err) => {
-                res.json(err)
-            })
-        }
-    })
-    .catch((err) => {
-        res.json(err)
-    })
-}
+// exports.addscore = (req, res) => {
+//     KioskUser.findById(req.params.userId)
+//     .then((user) => {
+//         if(user) {
+//             user.scores.push({
+//                 score: req.body.score,
+//                 date: req.body.date
+//             })
+//             user.save()
+//             .then((user) => {
+//                 KioskUser.findById(req.params.userId)
+//                 .then((user) => {
+//                     res.statusCode = 200;
+//                     res.setHeader('Content-Type', 'application/json');
+//                     res.json(user);
+//                 })
+//                 .catch((err) => {
+//                     res.json(err)
+//                 })
+//             })
+//             .catch((err) => {
+//                 res.json(err)
+//             })
+//         }
+//     })
+//     .catch((err) => {
+//         res.json(err)
+//     })
+// }
 
-exports.deleteAllScores =(req, res) => {
-    KioskUser.findById(req.params.userId)
-    .then((user) => {
-        if(user) {
-            for(var i = (user.scores.length -1); i>=0; i--) {
-				user.scores.id(user.scores[i]._id).remove();
-			}
-            user.save()
-			.then((user) => {
-				res.statusCode = 200;
-				res.setHeader('Content-Type', 'application/json');
-				res.json(user);
-			})
-            .catch((err) => {
-                res.json(err)
-            })
-        }
-        else if(user == null) {
-            re.json({
-                msg: "wasnt able to find the user"
-            })
-        }
-    })
-    .catch((err) => {
-        res.json(err)
-    })
-}
+// exports.deleteAllScores =(req, res) => {
+//     KioskUser.findById(req.params.userId)
+//     .then((user) => {
+//         if(user) {
+//             for(var i = (user.scores.length -1); i>=0; i--) {
+// 				user.scores.id(user.scores[i]._id).remove();
+// 			}
+//             user.save()
+// 			.then((user) => {
+// 				res.statusCode = 200;
+// 				res.setHeader('Content-Type', 'application/json');
+// 				res.json(user);
+// 			})
+//             .catch((err) => {
+//                 res.json(err)
+//             })
+//         }
+//         else if(user == null) {
+//             re.json({
+//                 msg: "wasnt able to find the user"
+//             })
+//         }
+//     })
+//     .catch((err) => {
+//         res.json(err)
+//     })
+// }
