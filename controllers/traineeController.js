@@ -9,17 +9,16 @@ exports.getTraineeNumber = (req, res) => {
   });
 };
 
-exports.addTrainee = (req, res) => {
-  try {
-    const addingKioskUsers = new trainee(req.body);
-    await addingKioskUsers.save();
-    res.status(200).json({
-        message:"successfully added",
-        kioskuser: addingKioskUsers
-    })} catch (e) {
-    res.send(e);}
-};
-
+// exports.addTrainee = (req, res) => {
+//   try {
+//     const addingKioskUsers = new trainee(req.body);
+//     await addingKioskUsers.save();
+//     res.status(200).json({
+//         message:"successfully added",
+//         kioskuser: addingKioskUsers
+//     })} catch (e) {
+//     res.send(e);}
+// };
 
 // exports.updatetrainee = (req, res) => {
 //     const name1= "ok";
@@ -54,7 +53,7 @@ exports.addTrainee = (req, res) => {
 //                     message:"something went wrong",
 //                     error:err
 //                 })
-//             } 
+//             }
 //         }else{
 //             res.status(400).json({
 //                 message:"Not found"
@@ -68,4 +67,3 @@ exports.addTrainee = (req, res) => {
 //         })
 //     }
 // }
-
