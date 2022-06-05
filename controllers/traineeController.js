@@ -3,22 +3,13 @@ const trainee = require("../models/traineeModel");
 
 exports.getTraineeNumber = (req, res) => {
   traineeNumber = 0;
-  trainee.countDocuments({}, function (err, docCount) {
-    if (err) {
-      return handleError(err);
-    } //handle possible errors
-    console.log(docCount);
-    traineeNumber = docCount;
-    res.status(200).json({
-      message: "successfull",
-      traineeNumber: traineeNumber,
-    });
-    //and do some other fancy stuff
+  res.status(200).json({
+    message: "successfull",
+    traineeNumber: traineeNumber,
   });
 };
 
 exports.addTrainee = (req, res) => {
-    
   try {
     const addingKioskUsers = new trainee(req.body);
     await addingKioskUsers.save();
@@ -38,21 +29,24 @@ exports.updatetrainee = (req, res) => {
             users=[]
         }
         if(users){
-            const user={        
-                status:req.body.status,
-                traineeNumber:req.body.traineeNumber
-            }
             try{
                 const id=req.params.id;
-                const updatedusers=await trainee.findByIdAndUpdate(id,{$set:user});
-                if(updatedusers==null){
+                const updatedUser = await trainee.findByIdAndUpdate(
+                    req.params.id,
+                    {
+                      $set: req.body,
+                    },
+                    { new: true }
+                  );
+                  res.status(200).json(updatedUser);
+                if(updatedUser==null){
                     res.status(400).json({
                     message:"Contacts couldnt be updated or id not found"
                 })
                 }else{
                     res.status(200).json({
                     message:"updated sucessfully",
-                    updatedusers:updatedusers
+                    updatedUser:updatedUser
                     })
                 }
             }catch(err){
