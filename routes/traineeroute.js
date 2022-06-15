@@ -3,8 +3,8 @@ const router = express.Router();
 const traineeController = require("../controllers/traineeController");
 
 //my course section
-router.get("/getnumber", dashboardController.mylearnings);
+router.get("/getnumber", traineeController.getTrainee);
 
-router.post("/posttrainee", dashboardController.mylearningsid);
+router.post("/posttrainee", traineeController.createTrainee);
 
-router.put("/updatetrainee/:id", dashboardController.addmycourse);
+router.put("/updatetrainee/:id", traineeController.updateTrainee);

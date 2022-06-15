@@ -13,7 +13,7 @@ const googleRouter = require("./routes/google");
 const dashboardRoutes = require("./routes/userDashboardRouter");
 const homeRouter = require("./routes/home");
 const kioskrouter = require("./routes/kioskroute");
-// const traineeRouter = require("./routes/traineeroute");
+const traineeRouter = require("./routes/traineeroute");
 const bodyParser = require("body-parser");
 const cors = require("cors");
 
@@ -37,7 +37,7 @@ app.use("/api/ads", adsRouter);
 app.use(googleRouter);
 app.use("/api/userDashboard", dashboardRoutes);
 app.use("/api/kiosk", kioskrouter);
-// app.use("/api/trainee", traineeRouter);
+app.use("/api/trainee", traineeRouter);
 
 app.listen(port, () => {
   console.log(`backend is running at port ${port}`);
