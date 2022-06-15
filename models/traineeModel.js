@@ -2,11 +2,7 @@ const mongoose = require("mongoose");
 
 const TraineeSchema = new mongoose.Schema(
   {
-    traineeNumber: {
-      type: String,
-      required: true,
-    },
-    status: {
+    trainee: {
       type: String,
       required: true,
     },

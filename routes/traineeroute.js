@@ -1,17 +1,10 @@
-const traineeRouter = require("express").Router();
+const express = require("express");
+const router = express.Router();
 const traineeController = require("../controllers/traineeController");
 
-router.get("/", traineeController.getTraineeNumber);
+//my course section
+router.get("/getnumber", dashboardController.mylearnings);
 
-// router.post('/addContact/:id',auth,contactController.createcontact)
+router.post("/posttrainee", dashboardController.mylearningsid);
 
-// router.put("/updateContact/:id",auth,contactController.updateContacts)
-
-// router.delete('/deleteContact/:id',auth,contactController.deleteContact)
-
-// router.get("/getbyid/:id",auth,contactController.getContactbyId)
-
-// router.get("/getbyname/:name",auth,contactController.getContactbyName)
-
-module.exports = traineeRouter;
-// .put(traineeController.updatetrainee);
+router.put("/updatetrainee/:id", dashboardController.addmycourse);
